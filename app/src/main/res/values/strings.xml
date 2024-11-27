@@ -37,4 +37,8 @@
     <string name="actionBarAddStory">Tambahkan Cerita</string>
     <string name="actionBarDetail">Detail Cerita</string>
     <string name="setMessageLogout">Logout Berhasil!</string>
+    <string name="setMessageSuccessUpload" translatable="false">Ceritamu berhasil di unggah!</string>
+    <string name="setMessageFailedUpload">Ceritamu gagal di unggah!</string>
+    <string name="permissionGranted">Permintaan izin dikabulkan</string>
+    <string name="permissionDenied">Permintaan izin ditolak</string>
 </resources>

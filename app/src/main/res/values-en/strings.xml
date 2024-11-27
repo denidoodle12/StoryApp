@@ -37,4 +37,8 @@
     <string name="actionBarAddStory">Add Story</string>
     <string name="actionBarDetail">Detail Story</string>
     <string name="setMessageLogout">Logout Successfully!</string>
+    <string name="setMessageSuccessUpload">Your story was uploaded successfully!</string>
+    <string name="setMessageFailedUpload">Your story failed to upload!</string>
+    <string name="permissionGranted">Permission request granted</string>
+    <string name="permissionDenied">Permission request denied</string>
 </resources>

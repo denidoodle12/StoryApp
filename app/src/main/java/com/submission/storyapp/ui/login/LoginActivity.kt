@@ -21,7 +21,8 @@ import com.submission.storyapp.viewmodel.AuthenticationViewModel
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityLoginBinding
+    private var _binding: ActivityLoginBinding? = null
+    private val binding get() = _binding!!
 
     private val viewModel: AuthenticationViewModel by viewModels {
         ViewModelFactory.getInstance(this)
@@ -29,8 +30,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
+        _binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setupView()
@@ -127,6 +127,11 @@ class LoginActivity : AppCompatActivity() {
             )
             start()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
 }

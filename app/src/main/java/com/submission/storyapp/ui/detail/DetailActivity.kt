@@ -3,7 +3,6 @@ package com.submission.storyapp.ui.detail
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
@@ -58,7 +57,6 @@ class DetailActivity : AppCompatActivity() {
                             is Result.Success -> {
                                 binding.progressBarDetail.visibility = View.GONE
                                 showDetailData(detail.data)
-                                Log.d("success","success to get detail")
                             }
                             is Result.Error -> {
                                 binding.progressBarDetail.visibility = View.GONE

@@ -36,9 +36,9 @@ class AddStoryActivity : AppCompatActivity() {
             ActivityResultContracts.RequestPermission()
         ) { isGranted: Boolean ->
             if (isGranted) {
-                Toast.makeText(this, "Permission request granted", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.permissionGranted), Toast.LENGTH_LONG).show()
             } else {
-                Toast.makeText(this, "Permission request denied", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.permissionDenied), Toast.LENGTH_LONG).show()
             }
         }
 
@@ -66,7 +66,7 @@ class AddStoryActivity : AppCompatActivity() {
             }
         }
     }
-cls
+
     private fun setupView() {
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -104,7 +104,7 @@ cls
             viewModel.setCurrentImageUri(uri)
             showImage()
         } else {
-            showToast("No media selected")
+            Toast.makeText(this, "no media selected", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -135,9 +135,9 @@ cls
                             is Result.Success -> {
                                 binding.progressIndicator.visibility = View.GONE
                                 AlertDialog.Builder(this).apply {
-                                    setTitle("Congrats!")
-                                    setMessage("Your Story has Uploaded!.")
-                                    setPositiveButton("Next") { _, _ ->
+                                    setTitle(context.getString(R.string.setTitleSuccess))
+                                    setMessage(context.getString(R.string.setMessageSuccessUpload))
+                                    setPositiveButton(context.getString(R.string.setPositiveSuccess)) { _, _ ->
                                         val intent = Intent(this@AddStoryActivity, MainActivity::class.java)
                                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                         startActivity(intent)
@@ -149,7 +149,14 @@ cls
                             }
                             is Result.Error -> {
                                 binding.progressIndicator.visibility = View.GONE
-                                showToast("Failed to Upload")
+                                AlertDialog.Builder(this).apply {
+                                    setTitle(context.getString(R.string.setTitleFailed))
+                                    setMessage(context.getString(R.string.setMessageFailedUpload))
+                                    setPositiveButton(context.getString(R.string.setPositiveFailed)) { _, _ ->
+                                    }
+                                    create()
+                                    show()
+                                }
                             }
                             is Result.Loading -> { binding.progressIndicator.visibility = View.VISIBLE }
                         }
@@ -163,10 +170,6 @@ cls
         viewModel.currentImageUri.value?.let {
             binding.previewImageView.setImageURI(it)
         }
-    }
-
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroy() {

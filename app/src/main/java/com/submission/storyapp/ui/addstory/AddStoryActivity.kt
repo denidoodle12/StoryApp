@@ -16,6 +16,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import com.submission.storyapp.R
 import com.submission.storyapp.ViewModelFactory
 import com.submission.storyapp.data.Result
 import com.submission.storyapp.databinding.ActivityAddStoryBinding
@@ -65,7 +66,7 @@ class AddStoryActivity : AppCompatActivity() {
             }
         }
     }
-
+cls
     private fun setupView() {
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -76,7 +77,7 @@ class AddStoryActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
         }
-        supportActionBar?.title = "Add Story Dicoding"
+        supportActionBar?.title = getString(R.string.actionBarAddStory)
 
         if (!allPermissionsGranted()) {
             requestPermissionLauncher.launch(REQUIRED_PERMISSION)

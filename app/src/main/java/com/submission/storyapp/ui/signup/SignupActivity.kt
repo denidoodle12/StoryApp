@@ -11,6 +11,7 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import com.submission.storyapp.R
 import com.submission.storyapp.ViewModelFactory
 import com.submission.storyapp.data.Result
 import com.submission.storyapp.databinding.ActivitySignupBinding
@@ -63,9 +64,9 @@ class SignupActivity : AppCompatActivity() {
                 is Result.Success -> {
                     binding.progressIndicator.visibility = View.GONE
                     AlertDialog.Builder(this).apply {
-                        setTitle("Success!")
-                        setMessage("Congratulations! The account has been created.")
-                        setPositiveButton("Continue") { _, _ ->
+                        setTitle(context.getString(R.string.setTitleSuccess))
+                        setMessage(context.getString(R.string.setMessageSuccessSignup))
+                        setPositiveButton(context.getString(R.string.setPositiveSuccess)) { _, _ ->
                             val intent = Intent(this@SignupActivity, LoginActivity::class.java)
                             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                             startActivity(intent)
@@ -78,9 +79,9 @@ class SignupActivity : AppCompatActivity() {
                 is Result.Error -> {
                     binding.progressIndicator.visibility = View.GONE
                     AlertDialog.Builder(this).apply {
-                        setTitle("Whoops!")
-                        setMessage("Failed to Create Account!.")
-                        setPositiveButton("Back") { _, _ ->
+                        setTitle(context.getString(R.string.setTitleFailed))
+                        setMessage(context.getString(R.string.setMessageErrorSignup))
+                        setPositiveButton(context.getString(R.string.setPositiveFailed)) { _, _ ->
                         }
                         create()
                         show()

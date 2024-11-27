@@ -10,6 +10,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
+import com.submission.storyapp.R
 import com.submission.storyapp.viewmodel.MainViewModel
 import com.submission.storyapp.ViewModelFactory
 import com.submission.storyapp.data.Result
@@ -44,7 +45,7 @@ class DetailActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
         }
-        supportActionBar?.title = "Detail Story Dicoding"
+        supportActionBar?.title = getString(R.string.actionBarDetail)
     }
 
     private fun setupAction() {

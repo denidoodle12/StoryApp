@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
         }
-        supportActionBar?.title = "Story Dicoding"
+        supportActionBar?.title = getString(R.string.actionBarHome)
     }
 
     private fun setupAction() {
@@ -115,7 +115,7 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.action_logout -> {
                 viewModel.logout()
-                Toast.makeText(this, "Logout Successfully.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.setMessageLogout), Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, WelcomeActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)

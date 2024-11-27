@@ -23,4 +23,18 @@
     <string name="txt_button_gallery">Gallery</string>
     <string name="txt_description_story">Story description here</string>
     <string name="txt_button_add">Add your Story</string>
+    <string name="password_too_short">Password cannot be less than 8 characters</string>
+    <string name="email_format_invalid">Invalid email format</string>
+    <string name="setMessageSuccessSignup">Congratulations! The account has been created.</string>
+    <string name="setMessageErrorSignup">Failed to Create Account!.</string>
+    <string name="setPositiveSuccess">Continue</string>
+    <string name="setPositiveFailed">Back</string>
+    <string name="setTitleSuccess">Success!</string>
+    <string name="setTitleFailed">Failed!</string>
+    <string name="setMessageSuccessLogin">Congratulations! Account Login Successfully</string>
+    <string name="setMessageErrorLogin">Account login failed!</string>
+    <string name="actionBarHome">Story</string>
+    <string name="actionBarAddStory">Add Story</string>
+    <string name="actionBarDetail">Detail Story</string>
+    <string name="setMessageLogout">Logout Successfully!</string>
 </resources>

@@ -23,4 +23,18 @@
     <string name="txt_button_gallery">Galeri</string>
     <string name="txt_description_story">Deskripsi cerita disini</string>
     <string name="txt_button_add">Tambahkan Ceritamu</string>
+    <string name="password_too_short">Password tidak boleh kurang dari 8 karakter</string>
+    <string name="email_format_invalid">Format email salah</string>
+    <string name="setMessageSuccessSignup">Selamat! Akun telah dibuat.</string>
+    <string name="setMessageErrorSignup">Gagal untuk membuat akun!.</string>
+    <string name="setPositiveSuccess">Lanjut</string>
+    <string name="setPositiveFailed">Kembali</string>
+    <string name="setTitleSuccess">Berhasil!</string>
+    <string name="setTitleFailed">Gagal!</string>
+    <string name="setMessageSuccessLogin">Selamat! Akun Berhasil Login</string>
+    <string name="setMessageErrorLogin">Gagal untuk login akun!</string>
+    <string name="actionBarHome">Cerita</string>
+    <string name="actionBarAddStory">Tambahkan Cerita</string>
+    <string name="actionBarDetail">Detail Cerita</string>
+    <string name="setMessageLogout">Logout Berhasil!</string>
 </resources>

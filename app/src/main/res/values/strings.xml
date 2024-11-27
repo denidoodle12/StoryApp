@@ -12,7 +12,6 @@
     <string name="title_login_page">Sudah siap untuk berbagi ceritamu?</string>
     <string name="name">Nama</string>
     <string name="greeting">Halo %1$s,</string>
-    <string name="logout">Keluar</string>
     <string name="fabAddStory">Fab ini digunakan untuk tombol menambahkan cerita anda</string>
     <string name="txt_item_name">Nama</string>
     <string name="txt_item_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris\n        volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus\n        dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad\n        litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend\n        diam, vel rutrum tellus vulputate quis.</string>

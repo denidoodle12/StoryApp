@@ -3,6 +3,7 @@ package com.submission.storyapp.ui.main
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
@@ -107,7 +108,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_settings -> {
+                val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+                startActivity(intent)
+                true
+            }
             R.id.action_logout -> {
                 viewModel.logout()
                 Toast.makeText(this, "Logout Successfully.", Toast.LENGTH_SHORT).show()

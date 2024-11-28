@@ -3,7 +3,7 @@ package com.submission.storyapp.ui.main
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
+import android.provider.Settings
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -52,13 +52,12 @@ class MainActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
         }
-        supportActionBar?.title = "Story Dicoding"
+        supportActionBar?.title = getString(R.string.actionBarHome)
     }
 
     private fun setupAction() {
         viewModel.getSession().observe(this) { sessionUser ->
             if (!sessionUser.isLogin) {
-                Log.d("session", "unable to get session")
                 val intent = Intent(this@MainActivity, WelcomeActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
@@ -69,12 +68,10 @@ class MainActivity : AppCompatActivity() {
                         is Result.Success -> {
                             binding.progressBar.visibility = View.GONE
                             storiesAdapter.submitList(results.data)
-                            Log.d("stories", "success to get stories")
                         }
                         is Result.Error -> {
                             binding.progressBar.visibility = View.GONE
                             Toast.makeText(this, results.message, Toast.LENGTH_SHORT).show()
-                            Log.d("stories", "failed to get stories")
                         }
                         is Result.Loading -> { binding.progressBar.visibility = View.VISIBLE }
                     }
@@ -93,9 +90,7 @@ class MainActivity : AppCompatActivity() {
 
             binding.fabAddStory.setOnClickListener {
                 val intent = Intent(this, AddStoryActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
-                finish()
             }
         }
     }
@@ -107,10 +102,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_settings -> {
+                val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+                startActivity(intent)
+                true
+            }
             R.id.action_logout -> {
                 viewModel.logout()
-                Toast.makeText(this, "Logout Successfully.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.setMessageLogout), Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, WelcomeActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)

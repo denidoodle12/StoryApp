@@ -3,13 +3,13 @@ package com.submission.storyapp.ui.detail
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
+import com.submission.storyapp.R
 import com.submission.storyapp.viewmodel.MainViewModel
 import com.submission.storyapp.ViewModelFactory
 import com.submission.storyapp.data.Result
@@ -44,7 +44,7 @@ class DetailActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
         }
-        supportActionBar?.title = "Detail Story Dicoding"
+        supportActionBar?.title = getString(R.string.actionBarDetail)
     }
 
     private fun setupAction() {
@@ -57,7 +57,6 @@ class DetailActivity : AppCompatActivity() {
                             is Result.Success -> {
                                 binding.progressBarDetail.visibility = View.GONE
                                 showDetailData(detail.data)
-                                Log.d("success","success to get detail")
                             }
                             is Result.Error -> {
                                 binding.progressBarDetail.visibility = View.GONE

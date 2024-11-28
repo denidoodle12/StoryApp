@@ -17,12 +17,12 @@ import com.submission.storyapp.ViewModelFactory
 import com.submission.storyapp.data.Result
 import com.submission.storyapp.data.pref.UserModel
 import com.submission.storyapp.databinding.ActivityLoginBinding
-import com.submission.storyapp.databinding.ActivityMainBinding
 import com.submission.storyapp.viewmodel.AuthenticationViewModel
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityLoginBinding
+    private var _binding: ActivityLoginBinding? = null
+    private val binding get() = _binding!!
 
     private val viewModel: AuthenticationViewModel by viewModels {
         ViewModelFactory.getInstance(this)
@@ -30,8 +30,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
+        _binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setupView()
@@ -71,9 +70,9 @@ class LoginActivity : AppCompatActivity() {
                         )
                     )
                     AlertDialog.Builder(this).apply {
-                        setTitle("Success!")
-                        setMessage("Congratulations! Success to Login")
-                        setPositiveButton("Continue") { _, _ ->
+                        setTitle(context.getString(R.string.setTitleSuccess))
+                        setMessage(context.getString(R.string.setMessageSuccessLogin))
+                        setPositiveButton(context.getString(R.string.setPositiveSuccess)) { _, _ ->
                             val intent = Intent(this@LoginActivity, MainActivity::class.java)
                             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                             startActivity(intent)
@@ -86,9 +85,9 @@ class LoginActivity : AppCompatActivity() {
                 is Result.Error -> {
                     binding.progressIndicator.visibility = View.GONE
                     AlertDialog.Builder(this).apply {
-                        setTitle("Whoops!")
-                        setMessage("Failed to Login Account!.")
-                        setPositiveButton("Back") { _, _ ->
+                        setTitle(context.getString(R.string.setTitleFailed))
+                        setMessage(context.getString(R.string.setMessageErrorLogin))
+                        setPositiveButton(context.getString(R.string.setPositiveFailed)) { _, _ ->
                         }
                         create()
                         show()
@@ -128,6 +127,11 @@ class LoginActivity : AppCompatActivity() {
             )
             start()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
 }

@@ -16,6 +16,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import com.submission.storyapp.R
 import com.submission.storyapp.ViewModelFactory
 import com.submission.storyapp.data.Result
 import com.submission.storyapp.databinding.ActivityAddStoryBinding
@@ -35,9 +36,9 @@ class AddStoryActivity : AppCompatActivity() {
             ActivityResultContracts.RequestPermission()
         ) { isGranted: Boolean ->
             if (isGranted) {
-                Toast.makeText(this, "Permission request granted", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.permissionGranted), Toast.LENGTH_LONG).show()
             } else {
-                Toast.makeText(this, "Permission request denied", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.permissionDenied), Toast.LENGTH_LONG).show()
             }
         }
 
@@ -76,7 +77,7 @@ class AddStoryActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
         }
-        supportActionBar?.title = "Add Story Dicoding"
+        supportActionBar?.title = getString(R.string.actionBarAddStory)
 
         if (!allPermissionsGranted()) {
             requestPermissionLauncher.launch(REQUIRED_PERMISSION)
@@ -103,7 +104,7 @@ class AddStoryActivity : AppCompatActivity() {
             viewModel.setCurrentImageUri(uri)
             showImage()
         } else {
-            showToast("No media selected")
+            Toast.makeText(this, "no media selected", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -134,9 +135,9 @@ class AddStoryActivity : AppCompatActivity() {
                             is Result.Success -> {
                                 binding.progressIndicator.visibility = View.GONE
                                 AlertDialog.Builder(this).apply {
-                                    setTitle("Congrats!")
-                                    setMessage("Your Story has Uploaded!.")
-                                    setPositiveButton("Next") { _, _ ->
+                                    setTitle(context.getString(R.string.setTitleSuccess))
+                                    setMessage(context.getString(R.string.setMessageSuccessUpload))
+                                    setPositiveButton(context.getString(R.string.setPositiveSuccess)) { _, _ ->
                                         val intent = Intent(this@AddStoryActivity, MainActivity::class.java)
                                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                         startActivity(intent)
@@ -148,7 +149,14 @@ class AddStoryActivity : AppCompatActivity() {
                             }
                             is Result.Error -> {
                                 binding.progressIndicator.visibility = View.GONE
-                                showToast("Failed to Upload")
+                                AlertDialog.Builder(this).apply {
+                                    setTitle(context.getString(R.string.setTitleFailed))
+                                    setMessage(context.getString(R.string.setMessageFailedUpload))
+                                    setPositiveButton(context.getString(R.string.setPositiveFailed)) { _, _ ->
+                                    }
+                                    create()
+                                    show()
+                                }
                             }
                             is Result.Loading -> { binding.progressIndicator.visibility = View.VISIBLE }
                         }
@@ -162,10 +170,6 @@ class AddStoryActivity : AppCompatActivity() {
         viewModel.currentImageUri.value?.let {
             binding.previewImageView.setImageURI(it)
         }
-    }
-
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroy() {
